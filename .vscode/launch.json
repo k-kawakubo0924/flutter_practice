@@ -8,7 +8,7 @@
       "name": "flutter_kadai",
       "request": "launch",
       "type": "dart",
-      "program": "lib/kadai2/kadai02_3.dart"
+      "program": "lib/kadai3/kadai03_1.dart"
 
     },
     {
