@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kadai/main.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,12 +25,6 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class Data {
-  String _course;
-  int _number;
-  Data(this._course, this._number) : super();
-}
-
 class _MyHomePageState extends State<MyHomePage> {
   Map<String, int> courseMap = {
     "システム開発コース：": 200,
@@ -39,16 +32,31 @@ class _MyHomePageState extends State<MyHomePage> {
     "ネットワークセキュリティーコース：": 70,
     "高度システム開発コース：": 50,
   };
-
+  int number = 0;
   void setData() {
-    setState(() {});
+    setState(() {
+      number++;
+      if (number >= courseMap.length) {
+        number = 0;
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    //MapをListに変換。
+    // .entriesでMapEntryという1つの箱にまとめてくれる。
+    // .toListで番号で指定できるように「リスト」に変換する。
+    // [number]は「number」番目の要素を取り出して。という意味になる
+    final currentEntry = courseMap.entries.toList()[number];
+    // .entriesを飛ばして.toListをするとエラーになる。コース名だけ、人数だけ、両方のリストを作成するのかシステムが迷ってしまうため。
+
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
-      body: Text("", style: TextStyle(fontSize: 32)),
+      body: Text(
+        "${currentEntry.key} ${currentEntry.value}名",
+        style: TextStyle(fontSize: 32),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: setData,
         child: const Icon(Icons.star),
