@@ -6,7 +6,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  final title = "ElavatedButton";
+  final title = "TextButton";
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +36,13 @@ class Weather {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String message = "今日の天気は？";
+  bool _answerd = false;
   static final _weather = [
-    Weather("今日の天気は？"),
-    Weather("晴れ"),
-    Weather("曇り"),
-    Weather("雨"),
-    Weather("雪"),
+    Weather("好きな食べ物は？"),
+    Weather("カレー"),
+    Weather("ラーメン"),
+    Weather("寿司"),
+    Weather("ハンバーグ"),
   ];
   Weather _item = _weather[0];
 
@@ -52,24 +52,41 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void setnull() {
+    setState(() {
+      _answerd = true;
+    });
+  }
+
+  void setreset() {
+    setState(() {
+      _answerd = false;
+      _item = (_weather.sublist(0)).first;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title), backgroundColor: Colors.white),
       backgroundColor: Colors.white,
-      body: SizedBox(
-        height: 130,
-        width: 250,
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(_item.toString(), style: TextStyle(fontSize: 32)),
-            ElevatedButton.icon(
-              onPressed: setMessage,
-              icon: Icon(Icons.wb_sunny),
-              label: Text(""),
-              style: ElevatedButton.styleFrom(
-                side: BorderSide(color: Colors.white),
-              ),
+            TextButton(
+              onPressed: _answerd
+                  ? null
+                  : () {
+                      setnull();
+                      setMessage();
+                    },
+
+              child: Text("答えを見る", style: TextStyle(fontSize: 32)),
+            ),
+            TextButton(
+              onPressed: setreset,
+              child: Text("リセット", style: TextStyle(fontSize: 32)),
             ),
           ],
         ),
