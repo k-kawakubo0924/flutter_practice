@@ -52,6 +52,7 @@ class HomeScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) => Nintei1Screen()),
                 );
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -63,6 +64,7 @@ class HomeScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) => Nintei2Screen()),
                 );
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -74,6 +76,7 @@ class HomeScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) => Nintei3Screen()),
                 );
+                Navigator.pop(context);
               },
             ),
           ],
